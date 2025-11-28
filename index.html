@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Whiskey Library - Elegant & Timeless</title>
+    <title>ReferralCode.com - Verified Referral Codes That Work</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lora:wght@400;600&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -21,6 +21,7 @@
             --cream-parchment: #F5F1E8;
             --amber-highlight: #D4A574;
             --forest-shadow: #1A2F26;
+            --success-green: #4A7C59;
         }
 
         body {
@@ -41,7 +42,7 @@
         }
 
         nav .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
@@ -79,146 +80,294 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(42, 74, 62, 0.75), rgba(26, 47, 38, 0.85)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%235D4037" width="1200" height="600"/></svg>');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, var(--deep-pine) 0%, var(--forest-shadow) 100%);
             color: var(--cream-parchment);
-            padding: 10rem 2rem;
+            padding: 5rem 2rem;
             text-align: center;
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             color: var(--cream-parchment);
         }
 
-        .hero .accent-line {
-            width: 100px;
-            height: 3px;
-            background-color: var(--antique-gold);
-            margin: 2rem auto;
+        .hero .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: var(--antique-gold);
+            font-weight: 600;
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             max-width: 700px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 2rem;
             line-height: 1.8;
+            opacity: 0.95;
         }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--deep-pine);
-            color: var(--cream-parchment);
-            padding: 14px 32px;
-            text-decoration: none;
+        /* Trust Indicators */
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            text-align: center;
+        }
+
+        .trust-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--antique-gold);
+            display: block;
+        }
+
+        .trust-label {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--cream-parchment);
+            opacity: 0.9;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-            border: 2px solid var(--deep-pine);
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
         }
 
-        .btn:hover {
-            background-color: var(--antique-gold);
-            border-color: var(--antique-gold);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-
-        /* Content Sections */
-        section {
-            padding: 6rem 2rem;
+        /* Top Deals Section */
+        .top-deals {
+            padding: 5rem 2rem;
+            background-color: var(--cream-parchment);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
-        h2 {
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--deep-pine);
-            margin-bottom: 1rem;
-            text-align: center;
+            margin-bottom: 0.5rem;
         }
 
-        .subtitle {
-            text-align: center;
+        .section-header p {
             color: var(--burnished-bronze);
             font-size: 1.1rem;
-            margin-bottom: 4rem;
-            font-style: italic;
         }
 
-        /* Feature Cards */
-        .features {
-            background-color: var(--deep-pine);
+        /* Deal Cards */
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .deal-card {
+            background: white;
+            border: 1px solid rgba(44, 74, 62, 0.15);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .deal-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-color: var(--antique-gold);
+        }
+
+        .deal-header {
+            background: linear-gradient(135deg, var(--deep-pine) 0%, var(--aged-leather) 100%);
+            padding: 1.5rem;
             color: var(--cream-parchment);
+            position: relative;
         }
 
-        .features h2 {
-            color: var(--cream-parchment);
+        .verified-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--success-green);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
 
-        .features .subtitle {
+        .verified-badge::before {
+            content: "✓";
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .deal-company {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .deal-category {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             color: var(--antique-gold);
         }
 
-        .card-grid {
+        .deal-body {
+            padding: 1.5rem;
+        }
+
+        .deal-benefit {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--deep-pine);
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .deal-description {
+            color: var(--smoky-charcoal);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .success-rate {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: rgba(74, 124, 89, 0.1);
+            border-radius: 4px;
+            border-left: 3px solid var(--success-green);
+        }
+
+        .success-percentage {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--success-green);
+        }
+
+        .success-text {
+            font-size: 0.85rem;
+            color: var(--smoky-charcoal);
+            line-height: 1.4;
+        }
+
+        .code-box {
+            background-color: var(--cream-parchment);
+            border: 2px dashed var(--antique-gold);
+            padding: 1rem;
+            border-radius: 4px;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .code-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--burnished-bronze);
+            margin-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .code-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--deep-pine);
+            letter-spacing: 2px;
+        }
+
+        .deal-cta {
+            display: block;
+            background-color: var(--deep-pine);
+            color: var(--cream-parchment);
+            padding: 1rem;
+            text-align: center;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .deal-cta:hover {
+            background-color: var(--antique-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Why Trust Us Section */
+        .trust-section {
+            background-color: var(--deep-pine);
+            color: var(--cream-parchment);
+            padding: 5rem 2rem;
+        }
+
+        .trust-section h2 {
+            color: var(--cream-parchment);
+        }
+
+        .trust-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2.5rem;
             margin-top: 3rem;
         }
 
-        .card {
-            background-color: rgba(245, 241, 232, 0.05);
-            padding: 2.5rem;
-            border-radius: 4px;
-            border: 1px solid var(--antique-gold);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .trust-card {
+            text-align: center;
+            padding: 2rem;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        .trust-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--antique-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1.5rem;
         }
 
-        .card h3 {
+        .trust-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: var(--antique-gold);
             margin-bottom: 1rem;
-        }
-
-        .card p {
-            line-height: 1.8;
-        }
-
-        /* About Section */
-        .about {
-            background-color: var(--cream-parchment);
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 1.1rem;
-            line-height: 1.9;
-        }
-
-        .about-content p {
-            margin-bottom: 1.5rem;
         }
 
         /* Footer */
@@ -231,6 +380,7 @@
 
         footer p {
             margin-bottom: 0.5rem;
+            opacity: 0.9;
         }
 
         footer a {
@@ -245,23 +395,24 @@
         /* Responsive */
         @media (max-width: 768px) {
             nav ul {
-                gap: 1.5rem;
+                gap: 1rem;
+                font-size: 0.85rem;
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
 
-            .hero p {
-                font-size: 1.1rem;
+            .trust-bar {
+                gap: 2rem;
             }
 
-            h2 {
-                font-size: 2rem;
-            }
-
-            .card-grid {
+            .deals-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
             }
         }
     </style>
@@ -269,60 +420,254 @@
 <body>
     <nav>
         <div class="container">
-            <a href="#" class="logo">Whiskey Library</a>
+            <a href="#" class="logo">
+                <img src="logo.svg" alt="ReferralCode.com">
+            </a>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Features</a></li>
+                <li><a href="#deals">Top Deals</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <section class="hero" id="home">
-        <h1>Where Elegance Meets Tradition</h1>
-        <div class="accent-line"></div>
-        <p>Experience the refined warmth of a private study. Crafted with timeless sophistication and rustic charm.</p>
-        <a href="#features" class="btn">Explore More</a>
+    <section class="hero">
+        <h1>Verified Referral Codes That Actually Work</h1>
+        <p class="tagline">No spam. No expired codes. Just real savings.</p>
+        <p>We test every code before publishing. You get the benefit, we earn a small commission. It's that simple.</p>
+        
+        <div class="trust-bar">
+            <div class="trust-item">
+                <span class="trust-number">100%</span>
+                <span class="trust-label">Success Rate</span>
+            </div>
+            <div class="trust-item">
+                <span class="trust-number">50+</span>
+                <span class="trust-label">Verified Partners</span>
+            </div>
+            <div class="trust-item">
+                <span class="trust-number">24hrs</span>
+                <span class="trust-label">Code Testing</span>
+            </div>
+        </div>
     </section>
 
-    <section class="features" id="features">
+    <section class="top-deals" id="deals">
         <div class="container">
-            <h2>Refined Excellence</h2>
-            <p class="subtitle">Every detail matters in the pursuit of timeless quality</p>
-            <div class="card-grid">
-                <div class="card">
-                    <h3>Classic Design</h3>
-                    <p>Inspired by the warmth of aged leather and rich wood, our aesthetic speaks to those who appreciate the finer things.</p>
+            <div class="section-header">
+                <h2>Today's Top Referral Codes</h2>
+                <p>Every code verified within the last 24 hours</p>
+            </div>
+
+            <div class="deals-grid">
+                <!-- Deal Card 1 -->
+                <div class="deal-card">
+                    <div class="deal-header">
+                        <span class="verified-badge">Verified</span>
+                        <h3 class="deal-company">Airbnb</h3>
+                        <p class="deal-category">Travel & Lodging</p>
+                    </div>
+                    <div class="deal-body">
+                        <p class="deal-benefit">Get $40 off your first stay</p>
+                        <p class="deal-description">Book your first Airbnb experience and receive $40 in travel credit. Perfect for weekend getaways or your next adventure.</p>
+                        
+                        <div class="success-rate">
+                            <div class="success-percentage">100%</div>
+                            <div class="success-text">
+                                <strong>Success rate</strong><br>
+                                Verified working today
+                            </div>
+                        </div>
+
+                        <div class="code-box">
+                            <div class="code-label">Your Referral Code</div>
+                            <div class="code-value">TRAVEL40</div>
+                        </div>
+
+                        <a href="#" class="deal-cta">Get Your $40 Credit →</a>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Premium Quality</h3>
-                    <p>Like a well-aged whiskey, quality cannot be rushed. We believe in craftsmanship that stands the test of time.</p>
+
+                <!-- Deal Card 2 -->
+                <div class="deal-card">
+                    <div class="deal-header">
+                        <span class="verified-badge">Verified</span>
+                        <h3 class="deal-company">Chase Sapphire</h3>
+                        <p class="deal-category">Credit Cards</p>
+                    </div>
+                    <div class="deal-body">
+                        <p class="deal-benefit">Earn 60,000 bonus points</p>
+                        <p class="deal-description">Apply with our referral link and earn 60,000 bonus points after you spend $4,000 in first 3 months.</p>
+                        
+                        <div class="success-rate">
+                            <div class="success-percentage">100%</div>
+                            <div class="success-text">
+                                <strong>Success rate</strong><br>
+                                Verified working today
+                            </div>
+                        </div>
+
+                        <div class="code-box">
+                            <div class="code-label">Referral Link Required</div>
+                            <div class="code-value" style="font-size: 1rem;">Click below to apply</div>
+                        </div>
+
+                        <a href="#" class="deal-cta">Apply & Earn Points →</a>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Timeless Elegance</h3>
-                    <p>Trends fade, but true style endures. Our approach favors the classic over the fleeting.</p>
+
+                <!-- Deal Card 3 -->
+                <div class="deal-card">
+                    <div class="deal-header">
+                        <span class="verified-badge">Verified</span>
+                        <h3 class="deal-company">Robinhood</h3>
+                        <p class="deal-category">Investing</p>
+                    </div>
+                    <div class="deal-body">
+                        <p class="deal-benefit">Get a free stock worth up to $200</p>
+                        <p class="deal-description">Open your first Robinhood account and receive a free stock. Start investing with zero commission fees.</p>
+                        
+                        <div class="success-rate">
+                            <div class="success-percentage">100%</div>
+                            <div class="success-text">
+                                <strong>Success rate</strong><br>
+                                Verified working today
+                            </div>
+                        </div>
+
+                        <div class="code-box">
+                            <div class="code-label">Referral Link Required</div>
+                            <div class="code-value" style="font-size: 1rem;">Click below to sign up</div>
+                        </div>
+
+                        <a href="#" class="deal-cta">Claim Free Stock →</a>
+                    </div>
+                </div>
+
+                <!-- Deal Card 4 -->
+                <div class="deal-card">
+                    <div class="deal-header">
+                        <span class="verified-badge">Verified</span>
+                        <h3 class="deal-company">Rakuten</h3>
+                        <p class="deal-category">Cash Back</p>
+                    </div>
+                    <div class="deal-body">
+                        <p class="deal-benefit">Earn $30 welcome bonus</p>
+                        <p class="deal-description">Sign up and make your first $30 purchase to receive a $30 bonus. Plus ongoing cash back on thousands of stores.</p>
+                        
+                        <div class="success-rate">
+                            <div class="success-percentage">100%</div>
+                            <div class="success-text">
+                                <strong>Success rate</strong><br>
+                                Verified working today
+                            </div>
+                        </div>
+
+                        <div class="code-box">
+                            <div class="code-label">Your Referral Code</div>
+                            <div class="code-value">SAVE30</div>
+                        </div>
+
+                        <a href="#" class="deal-cta">Get $30 Bonus →</a>
+                    </div>
+                </div>
+
+                <!-- Deal Card 5 -->
+                <div class="deal-card">
+                    <div class="deal-header">
+                        <span class="verified-badge">Verified</span>
+                        <h3 class="deal-company">HelloFresh</h3>
+                        <p class="deal-category">Meal Delivery</p>
+                    </div>
+                    <div class="deal-body">
+                        <p class="deal-benefit">Save $110 on your first boxes</p>
+                        <p class="deal-description">Get fresh ingredients and easy recipes delivered. Save big on your first 5 boxes with free shipping.</p>
+                        
+                        <div class="success-rate">
+                            <div class="success-percentage">100%</div>
+                            <div class="success-text">
+                                <strong>Success rate</strong><br>
+                                Verified working today
+                            </div>
+                        </div>
+
+                        <div class="code-box">
+                            <div class="code-label">Your Referral Code</div>
+                            <div class="code-value">FRESH110</div>
+                        </div>
+
+                        <a href="#" class="deal-cta">Save $110 Now →</a>
+                    </div>
+                </div>
+
+                <!-- Deal Card 6 -->
+                <div class="deal-card">
+                    <div class="deal-header">
+                        <span class="verified-badge">Verified</span>
+                        <h3 class="deal-company">Uber</h3>
+                        <p class="deal-category">Rideshare</p>
+                    </div>
+                    <div class="deal-body">
+                        <p class="deal-benefit">Get $15 off your first 3 rides</p>
+                        <p class="deal-description">New to Uber? Use our code and save $5 on each of your first three rides in your city.</p>
+                        
+                        <div class="success-rate">
+                            <div class="success-percentage">100%</div>
+                            <div class="success-text">
+                                <strong>Success rate</strong><br>
+                                Verified working today
+                            </div>
+                        </div>
+
+                        <div class="code-box">
+                            <div class="code-label">Your Referral Code</div>
+                            <div class="code-value">RIDE15</div>
+                        </div>
+
+                        <a href="#" class="deal-cta">Claim Ride Credit →</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="about" id="about">
+    <section class="trust-section" id="how-it-works">
         <div class="container">
-            <h2>Our Philosophy</h2>
-            <p class="subtitle">More than aesthetics—a way of being</p>
-            <div class="about-content">
-                <p>In a world of endless noise and hurry, we believe in creating spaces that invite reflection. Like a fine whiskey library, our approach values patience, quality, and the quiet confidence that comes from doing things right.</p>
-                <p>Every element is chosen with intention. Every detail considered. The result is an experience that feels both luxurious and welcoming—sophisticated without pretension.</p>
-                <p>This is for those who appreciate the journey as much as the destination.</p>
+            <div class="section-header">
+                <h2>Why Trust ReferralCode.com?</h2>
+                <p>We built this site because we were tired of broken codes and spammy affiliate sites</p>
+            </div>
+
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <div class="trust-icon">✓</div>
+                    <h3>100% Verified</h3>
+                    <p>Every code is tested within 24 hours. If it doesn't work, we don't list it. Simple as that.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">⚖</div>
+                    <h3>Full Transparency</h3>
+                    <p>We earn a commission when you use our codes. You get savings, we get a referral fee. Everyone wins.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">🛡</div>
+                    <h3>No Spam</h3>
+                    <p>No pop-ups. No email collection. No tricks. Just clean, reliable referral codes that benefit you.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">⭐</div>
+                    <h3>Quality Over Quantity</h3>
+                    <p>We only partner with companies we trust. Every deal here offers genuine value to you.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer id="contact">
+    <footer id="about">
         <div class="container">
-            <p>&copy; 2024 Whiskey Library. Crafted with care.</p>
-            <p><a href="mailto:hello@example.com">hello@example.com</a></p>
+            <p><strong>ReferralCode.com</strong> - Honest referral codes that work.</p>
+            <p>Questions? <a href="mailto:hello@referralcode.com">hello@referralcode.com</a></p>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem;">© 2024 ReferralCode.com. All codes verified daily.</p>
         </div>
     </footer>
 </body>
