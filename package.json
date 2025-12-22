@@ -1,0 +1,12 @@
+{
+  "name": "referralcode-com",
+  "version": "1.0.0",
+  "description": "Verified Referral Codes That Work",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js && echo '✅ Build complete. Open index.html in your browser to preview.'"
+  },
+  "keywords": ["referral", "codes", "promo", "deals"],
+  "author": "Electric Goat Media, LLC",
+  "license": "MIT"
+}

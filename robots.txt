@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /_data/
+Disallow: /*.md
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /build.js
+
+Sitemap: https://referralcode.com/sitemap.xml

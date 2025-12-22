@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# MacOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build artifacts (optional - you may want to commit these for GitHub Pages)
+# deals/
+# categories/
+# index.html
+# sitemap.xml
+# robots.txt
