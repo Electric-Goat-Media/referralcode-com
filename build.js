@@ -249,7 +249,6 @@ ${breadcrumbs.map((crumb, i) => {
 <meta name="twitter:title" content="${title}">
 <meta name="twitter:description" content="${description}">
 ${sitemapLinkTag}
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lora:wght@400;600&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pathPrefix}style.css">
 </head>
 <body>
@@ -555,13 +554,76 @@ function generateHomepage(deals, allDeals) {
 
 // Generate individual deal page
 function generateDealPage(deal, relatedDeals, allDeals) {
+  // Parse FAQ section if it exists
+  const faqRegex = /## Frequently Asked Questions\s*([\s\S]*)/;
+  const faqMatch = deal.bodyContent.match(faqRegex);
+  let mainContent = deal.bodyContent;
+  let faqHtml = '';
+
+  if (faqMatch) {
+    // Remove FAQ from main content
+    mainContent = deal.bodyContent.replace(faqRegex, '').trim();
+
+    // Parse FAQ items (### Question format)
+    const faqText = faqMatch[1];
+    const faqItems = [];
+    const faqSections = faqText.split(/###\s+/).filter(s => s.trim());
+
+    faqSections.forEach((section, index) => {
+      const lines = section.trim().split('\n');
+      const question = lines[0].trim();
+      const answer = lines.slice(1).join('\n').trim();
+
+      if (question && answer) {
+        faqItems.push({ question, answer });
+      }
+    });
+
+    if (faqItems.length > 0) {
+      faqHtml = `
+<div class="faq-section">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-accordion">
+${faqItems.map((item, index) => `
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFaq(${index})">
+<span>${item.question}</span>
+<span class="faq-icon">+</span>
+</button>
+<div class="faq-answer" id="faq-${index}">
+<p>${item.answer}</p>
+</div>
+</div>`).join('')}
+</div>
+</div>
+<script>
+function toggleFaq(index) {
+  const answer = document.getElementById('faq-' + index);
+  const button = answer.previousElementSibling;
+  const icon = button.querySelector('.faq-icon');
+  const isOpen = answer.style.maxHeight;
+
+  if (isOpen) {
+    answer.style.maxHeight = null;
+    icon.textContent = '+';
+  } else {
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+    icon.textContent = '−';
+  }
+}
+</script>`;
+    }
+  }
+
+  const mainBodyHtml = markdownToHtml(mainContent);
+
   const codeDisplay = deal.codeType === 'code' ? `
-<div class="code-box-large">
+<div class="code-box">
 <div class="code-label">Your Referral Code</div>
 <div class="code-value">${deal.code}</div>
 <button class="copy-button" onclick="navigator.clipboard.writeText('${deal.code}')">Copy Code</button>
 </div>` : `
-<div class="code-box-large">
+<div class="code-box">
 <div class="code-label">Referral Link Required</div>
 <div class="code-value code-value-small">Use the link below to claim your offer</div>
 </div>`;
@@ -584,23 +646,20 @@ ${getStructuredData(deal)}
 <a href="../../${deal.categorySlug}/index.html" class="deal-category-badge">${deal.category}</a>
 <h1>${deal.company} Referral Code ${CURRENT_YEAR}</h1>
 <p class="deal-page-tagline">${deal.benefit}</p>
-<div class="verified-banner">
-<span class="verified-icon">✓</span>
-<span>Verified ${deal.successRate}% Success Rate - Last checked today</span>
-</div>
 </div>
 <div class="deal-page-content">
 <div class="deal-main">
-${deal.bodyHtml}
-${codeDisplay}
-<a href="${deal.url}" class="deal-cta-large" target="_blank" rel="noopener">
-Claim Your ${deal.benefitAmount} Offer Now →
-</a>
+${mainBodyHtml}
 <div class="terms-note">
 <p><strong>Note:</strong> This is a referral link. We may earn a commission when you sign up, at no extra cost to you. All codes are verified and tested regularly.</p>
 </div>
+${faqHtml}
 </div>
 <aside class="deal-sidebar">
+<div class="cta-sidebar">
+${codeDisplay}
+<a href="${deal.url}" class="deal-cta" target="_blank" rel="noopener">Get Started →</a>
+</div>
 <div class="quick-facts">
 <h3>Quick Facts</h3>
 <ul>
@@ -609,10 +668,8 @@ Claim Your ${deal.benefitAmount} Offer Now →
 <li><strong>Offer:</strong> ${deal.benefit}</li>
 ${deal.code ? `<li><strong>Code:</strong> ${deal.code}</li>` : ''}
 <li><strong>Success Rate:</strong> ${deal.successRate}%</li>
+<li><strong>Verified:</strong> <span style="color: var(--success-green); font-weight: 600;">✓ Checked today</span></li>
 </ul>
-</div>
-<div class="cta-sidebar">
-<a href="${deal.url}" class="deal-cta" target="_blank" rel="noopener">Get Started →</a>
 </div>
 </aside>
 </div>
@@ -671,14 +728,14 @@ function generateCategoryPage(category, allDeals) {
 <p>${defaultDescription}</p>
 ${blurbHtml}
 <div class="view-controls">
-<button class="view-toggle active" data-view="grid">Grid View</button>
-<button class="view-toggle" data-view="table">Table View</button>
+<button class="view-toggle" data-view="grid">Grid View</button>
+<button class="view-toggle active" data-view="table">Table View</button>
 </div>
 </div>
-<div class="deals-grid" id="grid-view">
+<div class="deals-grid" id="grid-view" style="display: none;">
 ${dealsGridHtml}
 </div>
-<div class="deals-table-container" id="table-view" style="display: none;">
+<div class="deals-table-container" id="table-view">
 <div class="table-controls">
 <button class="sort-btn active" data-sort="company">Sort A-Z</button>
 <button class="sort-btn" data-sort="amount">Sort by Value</button>

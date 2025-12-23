@@ -17,9 +17,9 @@
 }
 
 body {
-    font-family: 'Lora', serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     color: var(--smoky-charcoal);
-    line-height: 1.7;
+    line-height: 1.8;
     background-color: var(--cream-parchment);
 }
 
@@ -49,11 +49,12 @@ nav .nav-right {
 }
 
 nav .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    font-size: 1.4rem;
     font-weight: 700;
     color: var(--antique-gold);
     text-decoration: none;
+    letter-spacing: -0.5px;
 }
 
 nav ul {
@@ -65,10 +66,9 @@ nav ul {
 nav a {
     color: var(--antique-gold);
     text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: 0.95rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     transition: color 0.3s ease;
 }
 
@@ -85,10 +85,9 @@ nav a:hover {
     width: 250px;
     padding: 0.6rem 1rem;
     border: 2px solid var(--antique-gold);
-    border-radius: 4px;
+    border-radius: 6px;
     background-color: rgba(245, 241, 232, 0.1);
     color: var(--cream-parchment);
-    font-family: 'Lora', serif;
     font-size: 0.9rem;
     transition: all 0.3s ease;
 }
@@ -134,11 +133,11 @@ nav a:hover {
 }
 
 .search-result-company {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 600;
     color: var(--deep-pine);
     margin-bottom: 0.25rem;
+    letter-spacing: -0.3px;
 }
 
 .search-result-meta {
@@ -195,23 +194,24 @@ nav a:hover {
 .hero {
     background: linear-gradient(135deg, var(--deep-pine) 0%, var(--forest-shadow) 100%);
     color: var(--cream-parchment);
-    padding: 5rem 2rem;
+    padding: 6rem 2rem;
     text-align: center;
 }
 
 .hero h1 {
-    font-family: 'Playfair Display', serif;
     font-size: 3.5rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: var(--cream-parchment);
+    letter-spacing: -1.5px;
 }
 
 .hero .tagline {
     font-size: 1.3rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     color: var(--antique-gold);
     font-weight: 600;
+    letter-spacing: -0.3px;
 }
 
 .hero p {
@@ -236,26 +236,26 @@ nav a:hover {
 }
 
 .trust-number {
-    font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--antique-gold);
     display: block;
+    letter-spacing: -1px;
 }
 
 .trust-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--cream-parchment);
     opacity: 0.9;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     margin-top: 0.5rem;
+    font-weight: 500;
 }
 
 /* Top Deals Section */
 .top-deals {
-    padding: 5rem 2rem;
+    padding: 6rem 2rem;
     background-color: var(--cream-parchment);
 }
 
@@ -266,15 +266,15 @@ nav a:hover {
 
 .section-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 4.5rem;
 }
 
 .section-header h2 {
-    font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--deep-pine);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
 }
 
 .section-header p {
@@ -286,44 +286,43 @@ nav a:hover {
 .deals-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .deal-card {
     background: white;
-    border: 1px solid rgba(44, 74, 62, 0.15);
-    border-radius: 4px;
+    border: 1px solid rgba(44, 74, 62, 0.1);
+    border-radius: 8px;
     overflow: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 .deal-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
     border-color: var(--antique-gold);
 }
 
 .deal-header {
     background: linear-gradient(135deg, var(--deep-pine) 0%, var(--aged-leather) 100%);
-    padding: 1.5rem;
+    padding: 2rem;
     color: var(--cream-parchment);
     position: relative;
 }
 
 .verified-badge {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 1.25rem;
+    right: 1.25rem;
     background-color: var(--success-green);
     color: white;
     padding: 0.4rem 0.8rem;
     border-radius: 20px;
-    font-size: 0.75rem;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
     display: flex;
     align-items: center;
     gap: 0.4rem;
@@ -336,30 +335,30 @@ nav a:hover {
 }
 
 .deal-company {
-    font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
 }
 
 .deal-category {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     color: var(--antique-gold);
+    font-weight: 500;
 }
 
 .deal-body {
-    padding: 1.5rem;
+    padding: 2rem;
 }
 
 .deal-benefit {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 600;
     color: var(--deep-pine);
-    margin-bottom: 1rem;
-    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.3px;
 }
 
 .deal-description {
@@ -381,10 +380,10 @@ nav a:hover {
 }
 
 .success-percentage {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: var(--success-green);
+    letter-spacing: -0.5px;
 }
 
 .success-text {
@@ -396,27 +395,27 @@ nav a:hover {
 .code-box {
     background-color: var(--cream-parchment);
     border: 2px dashed var(--antique-gold);
-    padding: 1rem;
-    border-radius: 4px;
+    padding: 1.5rem;
+    border-radius: 8px;
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .code-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     color: var(--burnished-bronze);
     margin-bottom: 0.5rem;
-    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 .code-value {
-    font-family: 'Montserrat', sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--deep-pine);
     letter-spacing: 2px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .code-value-small {
@@ -428,16 +427,15 @@ nav a:hover {
     display: block;
     background-color: var(--deep-pine);
     color: var(--cream-parchment);
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     text-align: center;
     text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 4px;
+    letter-spacing: 1.2px;
+    border-radius: 6px;
     transition: all 0.3s ease;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .deal-cta:hover {
@@ -448,13 +446,13 @@ nav a:hover {
 
 /* Deal Page Styles */
 .deal-page {
-    padding: 3rem 2rem;
+    padding: 4rem 2rem;
     background-color: var(--cream-parchment);
 }
 
 .deal-page-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
 }
 
 .deal-category-badge {
@@ -463,12 +461,11 @@ nav a:hover {
     color: var(--cream-parchment);
     padding: 0.5rem 1rem;
     border-radius: 20px;
-    font-size: 0.85rem;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
+    letter-spacing: 1.5px;
+    margin-bottom: 1.5rem;
     text-decoration: none;
     transition: background-color 0.3s ease;
 }
@@ -498,31 +495,32 @@ nav a:hover {
 }
 
 .deal-page h1 {
-    font-family: 'Playfair Display', serif;
     font-size: 3rem;
     font-weight: 700;
     color: var(--deep-pine);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
 }
 
 .deal-page-tagline {
     font-size: 1.3rem;
     color: var(--burnished-bronze);
     font-weight: 600;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.3px;
 }
 
 .verified-banner {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background-color: rgba(74, 124, 89, 0.15);
+    background-color: rgba(74, 124, 89, 0.12);
     color: var(--success-green);
-    padding: 0.75rem 1.5rem;
+    padding: 0.6rem 1.25rem;
     border-radius: 25px;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
 }
 
 .verified-icon {
@@ -547,32 +545,35 @@ nav a:hover {
 
 .deal-main {
     background: white;
-    padding: 2.5rem;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 .deal-main h2 {
-    font-family: 'Playfair Display', serif;
     font-size: 2rem;
+    font-weight: 700;
     color: var(--deep-pine);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.5px;
 }
 
 .deal-main h3 {
-    font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
+    font-weight: 600;
     color: var(--deep-pine);
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.3px;
 }
 
 .deal-main p {
     margin-bottom: 1rem;
 }
 
-.deal-main ul {
+.deal-main ul,
+.deal-main ol {
     margin: 1rem 0 1.5rem 2rem;
 }
 
@@ -580,60 +581,23 @@ nav a:hover {
     margin-bottom: 0.5rem;
 }
 
-.code-box-large {
-    background-color: var(--cream-parchment);
-    border: 2px dashed var(--antique-gold);
-    padding: 2rem;
-    border-radius: 4px;
-    text-align: center;
-    margin: 2rem 0;
-}
-
-.code-box-large .code-value {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
 
 .copy-button {
     background-color: var(--deep-pine);
     color: var(--cream-parchment);
     border: none;
     padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    font-family: 'Montserrat', sans-serif;
+    border-radius: 6px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .copy-button:hover {
     background-color: var(--antique-gold);
-}
-
-.deal-cta-large {
-    display: block;
-    background-color: var(--success-green);
-    color: white;
-    padding: 1.25rem 2rem;
-    text-align: center;
-    text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-    margin: 2rem 0;
-}
-
-.deal-cta-large:hover {
-    background-color: var(--antique-gold);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .terms-note {
@@ -654,16 +618,17 @@ nav a:hover {
 
 .quick-facts {
     background: white;
-    padding: 1.5rem;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 1.75rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 .quick-facts h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    font-weight: 700;
     color: var(--deep-pine);
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.3px;
 }
 
 .quick-facts ul {
@@ -689,38 +654,48 @@ nav a:hover {
 }
 
 .cta-sidebar {
-    background: linear-gradient(135deg, var(--deep-pine) 0%, var(--forest-shadow) 100%);
-    padding: 2rem 1.5rem;
-    border-radius: 4px;
+    background: white;
+    padding: 2rem 1.75rem;
+    border-radius: 8px;
     text-align: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border: 2px solid var(--antique-gold);
+}
+
+.cta-sidebar .code-box {
+    margin-bottom: 1.5rem;
 }
 
 .cta-sidebar .deal-cta {
-    background-color: var(--antique-gold);
-    color: var(--forest-shadow);
+    background-color: var(--success-green);
+    color: white;
+    padding: 1.25rem 2rem;
+    font-size: 1rem;
+    display: block;
+    width: 100%;
 }
 
 .cta-sidebar .deal-cta:hover {
-    background-color: var(--amber-highlight);
+    background-color: var(--antique-gold);
 }
 
 /* Category Page */
 .category-page {
-    padding: 4rem 2rem;
+    padding: 5rem 2rem;
     background-color: var(--cream-parchment);
 }
 
 .category-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
 }
 
 .category-header h1 {
-    font-family: 'Playfair Display', serif;
     font-size: 3rem;
     font-weight: 700;
     color: var(--deep-pine);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
 }
 
 .category-header p {
@@ -753,14 +728,13 @@ nav a:hover {
     color: var(--deep-pine);
     border: 2px solid var(--deep-pine);
     padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    font-family: 'Montserrat', sans-serif;
+    border-radius: 6px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 }
 
 .view-toggle:hover {
@@ -789,12 +763,12 @@ nav a:hover {
     color: var(--burnished-bronze);
     border: 2px solid var(--burnished-bronze);
     padding: 0.6rem 1.2rem;
-    border-radius: 4px;
-    font-family: 'Montserrat', sans-serif;
+    border-radius: 6px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.3px;
 }
 
 .sort-btn:hover {
@@ -811,9 +785,9 @@ nav a:hover {
 .deals-table {
     width: 100%;
     background: white;
-    border-radius: 4px;
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     border-collapse: collapse;
 }
 
@@ -823,13 +797,12 @@ nav a:hover {
 }
 
 .deals-table th {
-    padding: 1rem 1.5rem;
+    padding: 1.25rem 1.5rem;
     text-align: left;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    font-size: 0.75rem;
 }
 
 .deals-table td {
@@ -850,10 +823,10 @@ nav a:hover {
 }
 
 .table-company {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--deep-pine);
+    letter-spacing: -0.3px;
 }
 
 .table-benefit {
@@ -862,10 +835,10 @@ nav a:hover {
 }
 
 .table-amount {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--success-green);
+    letter-spacing: -0.3px;
 }
 
 .table-code code {
@@ -873,7 +846,7 @@ nav a:hover {
     border: 1px dashed var(--antique-gold);
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     font-weight: 600;
     color: var(--deep-pine);
     font-size: 0.9rem;
@@ -891,13 +864,12 @@ nav a:hover {
     color: var(--cream-parchment);
     padding: 0.6rem 1.2rem;
     text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-radius: 4px;
+    letter-spacing: 1px;
+    border-radius: 6px;
     transition: all 0.3s ease;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 }
 
 .table-cta:hover {
@@ -905,18 +877,88 @@ nav a:hover {
     transform: translateY(-2px);
 }
 
+/* FAQ Accordion */
+.faq-section {
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 2px solid rgba(44, 74, 62, 0.1);
+}
+
+.faq-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--deep-pine);
+    margin-bottom: 1.75rem;
+    letter-spacing: -0.5px;
+}
+
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.faq-item {
+    border: 1px solid rgba(44, 74, 62, 0.12);
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.75rem;
+    background: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--deep-pine);
+    text-align: left;
+    transition: background-color 0.3s ease;
+    letter-spacing: -0.2px;
+}
+
+.faq-question:hover {
+    background-color: rgba(201, 169, 97, 0.05);
+}
+
+.faq-icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--antique-gold);
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.faq-answer p {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    margin: 0;
+    color: var(--smoky-charcoal);
+    line-height: 1.7;
+}
+
 /* Related Deals */
 .related-deals {
-    padding: 4rem 2rem;
+    padding: 5rem 2rem;
     background-color: white;
 }
 
 .related-deals h2 {
-    font-family: 'Playfair Display', serif;
     font-size: 2rem;
+    font-weight: 700;
     color: var(--deep-pine);
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     text-align: center;
+    letter-spacing: -0.5px;
 }
 
 /* Why Trust Us Section */
@@ -955,10 +997,11 @@ nav a:hover {
 }
 
 .trust-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    font-weight: 700;
     color: var(--antique-gold);
     margin-bottom: 1rem;
+    letter-spacing: -0.3px;
 }
 
 /* Footer */
