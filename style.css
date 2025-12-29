@@ -306,26 +306,48 @@ nav a:hover {
 
 .deal-header {
     background: linear-gradient(135deg, var(--deep-pine) 0%, var(--aged-leather) 100%);
-    padding: 2rem;
+    padding: 1.5rem;
     color: var(--cream-parchment);
     position: relative;
 }
 
+.company-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    background: white;
+    border-radius: 6px;
+    padding: 6px;
+    flex-shrink: 0;
+}
+
+.deal-header-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.deal-header-text {
+    flex: 1;
+    min-width: 0;
+}
+
 .verified-badge {
     position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
+    top: 1rem;
+    right: 1rem;
     background-color: var(--success-green);
     color: white;
-    padding: 0.4rem 0.8rem;
+    padding: 0.35rem 0.7rem;
     border-radius: 20px;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.8px;
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.3rem;
 }
 
 .verified-badge::before {
@@ -335,14 +357,22 @@ nav a:hover {
 }
 
 .deal-company {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.25rem;
     letter-spacing: -0.5px;
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.deal-company:hover {
+    color: var(--amber-highlight);
 }
 
 .deal-category {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: var(--antique-gold);
@@ -350,7 +380,7 @@ nav a:hover {
 }
 
 .deal-body {
-    padding: 2rem;
+    padding: 1.5rem;
 }
 
 .deal-benefit {
@@ -453,6 +483,18 @@ nav a:hover {
 .deal-page-header {
     text-align: center;
     margin-bottom: 3.5rem;
+}
+
+.deal-page-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    margin: 0 auto 1.5rem;
+    display: block;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .deal-category-badge {
@@ -822,11 +864,34 @@ nav a:hover {
     border-bottom: none;
 }
 
+.table-company-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.table-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    background: white;
+    border-radius: 4px;
+    padding: 4px;
+    flex-shrink: 0;
+    border: 1px solid rgba(44, 74, 62, 0.1);
+}
+
 .table-company {
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--deep-pine);
     letter-spacing: -0.3px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.table-company:hover {
+    color: var(--antique-gold);
 }
 
 .table-benefit {

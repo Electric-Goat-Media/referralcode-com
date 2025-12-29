@@ -11,12 +11,15 @@ This site uses a simple static site generator to manage referral deals. All deal
 ```
 referralcode-com/
 ├── _data/
-│   └── deals/           # Markdown files for each deal
-│       ├── gusto.md
-│       ├── mercury.md
-│       └── ...
-├── deals/               # Generated deal pages
-├── categories/          # Generated category pages
+│   ├── deals/           # Markdown files for each deal
+│   │   ├── gusto.md
+│   │   ├── mercury.md
+│   │   └── ...
+│   └── categories.json  # Optional category descriptions
+├── logos/               # Downloaded company logos (auto-generated)
+├── deal/                # Generated deal pages
+├── [category-slug]/     # Generated category pages
+├── .env                 # Environment variables (not committed)
 ├── build.js             # Static site generator
 ├── style.css            # Site styles
 ├── index.html           # Generated homepage
@@ -78,10 +81,31 @@ node build.js
 
 This will:
 - Read all deal files from `_data/deals/`
+- Download missing company logos from logo.dev
 - Generate the homepage
 - Generate individual deal pages
 - Generate category pages
 - Create sitemap.xml and robots.txt
+
+### Company Logos
+
+Company logos are automatically downloaded from [logo.dev](https://logo.dev) during the build process. The build script:
+
+1. Extracts the domain from each deal's URL
+2. Downloads the logo from logo.dev API
+3. Saves logos to the `/logos/` directory
+4. Automatically includes logos in deal cards and pages
+5. Skips re-downloading logos that already exist
+
+**Setup:**
+
+To enable logo downloading, create a `.env` file in the root directory:
+
+```bash
+LOGO_DEV_TOKEN=your_token_here
+```
+
+The `.env` file is gitignored and won't be committed to the repository. Logos are also gitignored as they can be regenerated from the build script.
 
 ## SEO Features
 

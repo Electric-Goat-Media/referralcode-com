@@ -1,6 +1,15 @@
 # Dependencies
 node_modules/
 
+# Environment variables
+.env
+
+# Data exports
+*.csv
+
+# Downloaded logos
+logos/
+
 # MacOS
 .DS_Store
 
@@ -9,6 +18,7 @@ node_modules/
 .idea/
 *.swp
 *.swo
+
 
 # Build artifacts (optional - you may want to commit these for GitHub Pages)
 # deals/

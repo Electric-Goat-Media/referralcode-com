@@ -6,8 +6,7 @@ benefit: Earn $250
 benefitAmount: $250
 codeType: link
 url: https://mercury.com/r/electric-goat-media
-verified: true
-successRate: 100
+termsUrl: https://mercury.com/legal/referred-customer-agreement
 metaTitle: Mercury Bank Referral Code 2025 - Earn $250 Cash | ReferralCode.com
 metaDescription: Get $250 cash with Mercury Bank referral link. Deposit $10K in your first 90 days and earn your bonus. Best business banking for startups.
 priority: 2

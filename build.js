@@ -2,9 +2,29 @@
 
 const fs = require('fs');
 const path = require('path');
+const https = require('https');
+
+// Load environment variables from .env file
+function loadEnv() {
+  const envPath = path.join(__dirname, '.env');
+  if (fs.existsSync(envPath)) {
+    const envContent = fs.readFileSync(envPath, 'utf-8');
+    envContent.split('\n').forEach(line => {
+      const trimmedLine = line.trim();
+      if (trimmedLine && !trimmedLine.startsWith('#')) {
+        const [key, ...valueParts] = trimmedLine.split('=');
+        const value = valueParts.join('=').trim();
+        process.env[key.trim()] = value;
+      }
+    });
+  }
+}
+
+loadEnv();
 
 // Get current year dynamically
 const CURRENT_YEAR = new Date().getFullYear();
+const LOGO_DEV_TOKEN = process.env.LOGO_DEV_TOKEN;
 
 // Utility: Generate slug from string
 function slugify(text) {
@@ -12,6 +32,88 @@ function slugify(text) {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
+}
+
+// Utility: Download logo from logo.dev
+function downloadLogo(domain, outputPath) {
+  return new Promise((resolve, reject) => {
+    const url = `https://img.logo.dev/${domain}?token=${LOGO_DEV_TOKEN}`;
+
+    https.get(url, (response) => {
+      if (response.statusCode === 200) {
+        const fileStream = fs.createWriteStream(outputPath);
+        response.pipe(fileStream);
+        fileStream.on('finish', () => {
+          fileStream.close();
+          resolve(true);
+        });
+        fileStream.on('error', (err) => {
+          fs.unlink(outputPath, () => {});
+          reject(err);
+        });
+      } else {
+        resolve(false); // Logo not found, continue without it
+      }
+    }).on('error', (err) => {
+      resolve(false); // Network error, continue without logo
+    });
+  });
+}
+
+// Utility: Extract domain from URL
+function extractDomain(url) {
+  try {
+    const urlObj = new URL(url);
+    return urlObj.hostname.replace('www.', '');
+  } catch (e) {
+    return null;
+  }
+}
+
+// Utility: Ensure logos directory exists
+function ensureLogosDir() {
+  const logosDir = path.join(__dirname, 'logos');
+  if (!fs.existsSync(logosDir)) {
+    fs.mkdirSync(logosDir, { recursive: true });
+  }
+  return logosDir;
+}
+
+// Utility: Download missing logos for deals
+async function downloadMissingLogos(deals) {
+  const logosDir = ensureLogosDir();
+
+  console.log('📥 Downloading missing logos...');
+
+  const downloadPromises = deals.map(async (deal) => {
+    const domain = extractDomain(deal.url);
+    if (!domain) return;
+
+    const logoFileName = `${deal.slug}.png`;
+    const logoPath = path.join(logosDir, logoFileName);
+
+    // Check if logo already exists
+    if (fs.existsSync(logoPath)) {
+      deal.logoPath = `logos/${logoFileName}`;
+      return;
+    }
+
+    // Download logo
+    try {
+      const success = await downloadLogo(domain, logoPath);
+      if (success) {
+        deal.logoPath = `logos/${logoFileName}`;
+        console.log(`   ✓ ${deal.company} logo downloaded`);
+      } else {
+        console.log(`   ⚠ ${deal.company} logo not available`);
+      }
+    } catch (err) {
+      console.log(`   ✗ ${deal.company} logo failed: ${err.message}`);
+    }
+  });
+
+  await Promise.all(downloadPromises);
+  console.log('');
 }
 
 // Utility: Minify HTML
@@ -424,12 +526,20 @@ function getDealCardHtml(deal, pathPrefix = './') {
                     <div class="code-value code-value-small">Click below to apply</div>
                 </div>`;
 
+  const logoHtml = deal.logoPath ? `
+                            <img src="${pathPrefix}${deal.logoPath}" alt="${deal.company} logo" class="company-logo">` : '';
+
   return `
                 <div class="deal-card">
                     <div class="deal-header">
                         <span class="verified-badge">Verified</span>
-                        <h3 class="deal-company">${deal.company}</h3>
-                        <p class="deal-category"><a href="${pathPrefix}${deal.categorySlug}/index.html">${deal.category}</a></p>
+                        <div class="deal-header-content">
+                            <a href="${pathPrefix}deal/${deal.slug}/index.html">${logoHtml}</a>
+                            <div class="deal-header-text">
+                                <a href="${pathPrefix}deal/${deal.slug}/index.html" class="deal-company">${deal.company}</a>
+                                <p class="deal-category"><a href="${pathPrefix}${deal.categorySlug}/index.html">${deal.category}</a></p>
+                            </div>
+                        </div>
                     </div>
                     <div class="deal-body">
                         <p class="deal-benefit">${deal.benefit}</p>
@@ -474,6 +584,16 @@ function getStructuredData(deal) {
 function generateHomepage(deals, allDeals) {
   const dealsGridHtml = deals.map(deal => getDealCardHtml(deal)).join('\n');
 
+  // Calculate total value of all deals
+  const totalValue = deals.reduce((sum, deal) => {
+    const numericAmount = typeof deal.benefitAmount === 'string'
+      ? parseFloat(deal.benefitAmount.replace(/[^0-9.]/g, ''))
+      : deal.benefitAmount;
+    return sum + (numericAmount || 0);
+  }, 0);
+
+  const formattedTotal = totalValue.toLocaleString('en-US');
+
   const content = `
     <section class="hero">
         <h1>Verified Referral Codes That Actually Work</h1>
@@ -500,7 +620,7 @@ function generateHomepage(deals, allDeals) {
         <div class="container">
             <div class="section-header">
                 <h2>Today's Top Referral Codes</h2>
-                <p>Every code verified within the last 24 hours</p>
+                <p>$${formattedTotal}+ in available bonuses across ${deals.length} verified deals</p>
             </div>
 
             <div class="deals-grid">
@@ -638,11 +758,14 @@ ${relatedDeals.map(d => getDealCardHtml(d, '../../')).join('\n')}
 </div>
 </section>` : '';
 
+  const dealPageLogoHtml = deal.logoPath ? `
+<img src="../../${deal.logoPath}" alt="${deal.company} logo" class="deal-page-logo">` : '';
+
   const content = `
 ${getStructuredData(deal)}
 <article class="deal-page">
 <div class="container">
-<div class="deal-page-header">
+<div class="deal-page-header">${dealPageLogoHtml}
 <a href="../../${deal.categorySlug}/index.html" class="deal-category-badge">${deal.category}</a>
 <h1>${deal.company} Referral Code ${CURRENT_YEAR}</h1>
 <p class="deal-page-tagline">${deal.benefit}</p>
@@ -658,7 +781,7 @@ ${faqHtml}
 <aside class="deal-sidebar">
 <div class="cta-sidebar">
 ${codeDisplay}
-<a href="${deal.url}" class="deal-cta" target="_blank" rel="noopener">Get Started →</a>
+<a href="${deal.url}" class="deal-cta" target="_blank" rel="noreferrer noopener">Get Started →</a>
 </div>
 <div class="quick-facts">
 <h3>Quick Facts</h3>
@@ -707,9 +830,18 @@ function generateCategoryPage(category, allDeals) {
       ? parseFloat(deal.benefitAmount.replace(/[^0-9.]/g, ''))
       : deal.benefitAmount;
 
+    const tableLogo = deal.logoPath
+      ? `<img src="../${deal.logoPath}" alt="${deal.company} logo" class="table-logo">`
+      : '';
+
     return `
                     <tr data-company="${deal.company}" data-amount="${numericAmount}">
-                        <td class="table-company">${deal.company}</td>
+                        <td>
+                            <div class="table-company-cell">
+                                <a href="../deal/${deal.slug}/index.html">${tableLogo}</a>
+                                <a href="../deal/${deal.slug}/index.html" class="table-company">${deal.company}</a>
+                            </div>
+                        </td>
                         <td class="table-benefit">${deal.benefit}</td>
                         <td class="table-amount">$${numericAmount}</td>
                         <td class="table-code">${codeDisplay}</td>
@@ -717,8 +849,18 @@ function generateCategoryPage(category, allDeals) {
                     </tr>`;
   }).join('');
 
+  // Calculate total value for this category
+  const totalValue = category.deals.reduce((sum, deal) => {
+    const numericAmount = typeof deal.benefitAmount === 'string'
+      ? parseFloat(deal.benefitAmount.replace(/[^0-9.]/g, ''))
+      : deal.benefitAmount;
+    return sum + (numericAmount || 0);
+  }, 0);
+
+  const formattedTotal = totalValue.toLocaleString('en-US');
+
   const blurbHtml = category.blurb ? `<div class="category-blurb">${category.blurb}</div>` : '';
-  const defaultDescription = `Find the best verified referral codes and promo codes for ${category.name.toLowerCase()}. All codes tested within 24 hours.`;
+  const defaultDescription = `$${formattedTotal}+ in available bonuses across ${category.deals.length} verified ${category.name.toLowerCase()} deals`;
 
   const content = `
 <section class="category-page">
@@ -868,13 +1010,16 @@ ${urls.map(url => `<url>
 }
 
 // Main build function
-function build() {
+async function build() {
   console.log('🔨 Building site...\n');
 
   // Load deals
   console.log('📖 Loading deals...');
   const deals = loadDeals();
   console.log(`   Found ${deals.length} deals\n`);
+
+  // Download missing logos
+  await downloadMissingLogos(deals);
 
   // Get categories
   const categories = getCategories(deals);
